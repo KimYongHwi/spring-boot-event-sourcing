@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class SiteProductProjection {
+public class SiteProductHandler {
 
     private final SiteProductRepository repository;
     
