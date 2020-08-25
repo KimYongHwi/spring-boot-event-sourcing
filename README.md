@@ -47,3 +47,17 @@ create table saga_entry (
 
 ## Swagger
 - http://localhost:8080/swagger-ui/index.html
+
+## Project structure
+```
+├── aggregates
+├── commands
+├── configs
+├── domain
+├── events
+├── exceptions
+├── handlers
+├── queries
+├── rest
+└── services
+```
