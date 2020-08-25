@@ -42,5 +42,8 @@ create table saga_entry (
 ) DEFAULT CHARSET=utf8;
 ```
 
+## Axon
+- http://localhost:8024
+
 ## Swagger
 - http://localhost:8080/swagger-ui/index.html
