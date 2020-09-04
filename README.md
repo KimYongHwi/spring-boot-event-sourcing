@@ -8,38 +8,12 @@
 - spring-boot-starter-webflux
 
 ## Before start
-### 1. Docker container start
+### Docker container start
 ```
 $ docker-compose up -d
 
 Creating mysql      ... done
 Creating axonserver ... done
-```
-
-### 2. Create tables
-```
-create table product (
-    product_id int(10) unsigned not null primary key auto_increment,
-    sale_price decimal(20,4) unsigned not null,
-    consumer_price decimal(20,4) unsigned not null
-) DEFAULT CHARSET=utf8;
-
-create table token_entry (
-    processor_name varchar(255) not null,
-    segment int(10) unsigned not null,
-    owner varchar(255) default null,
-    timestamp varchar(255) not null,
-    token blob default null,
-    token_type varchar(255) default null,
-    PRIMARY KEY (processor_name, segment)
-) DEFAULT CHARSET=utf8;
-
-create table saga_entry (
-    saga_id varchar(255) primary key not null,
-    revision varchar(255) default null,
-    saga_type varchar(255) default null,
-    serialized_saga blob default null
-) DEFAULT CHARSET=utf8;
 ```
 
 ## Axon
