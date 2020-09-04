@@ -1,5 +1,5 @@
 # spring-boot-event-sourcing
-AXON server를 이용한 event sourcing sample 입니다. 상품 정보를 등록/수정 및 조회하는 api를 axon 과 spring-boot로 구현하였습니다.
+AXON server를 이용한 event sourcing sample 입니다. 상품 정보를 등록/수정 및 조회하는 api를 Axon framework와 Spring boot로 구현하였습니다.
 
 ## Main dependency
 - axon-spring-boot-starter
