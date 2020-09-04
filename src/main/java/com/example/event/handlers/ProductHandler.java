@@ -7,12 +7,16 @@ import com.example.event.domain.repository.ProductRepository;
 import com.example.event.events.ProductCreatedEvent;
 import com.example.event.events.ProductUpdatedEvent;
 import com.example.event.exceptions.ProductNotFoundException;
+import com.example.event.queries.FindProductByIdQuery;
 
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class ProductHandler {
@@ -42,5 +46,11 @@ public class ProductHandler {
         } else {
             throw new ProductNotFoundException(event.getProductId());
         }
+    }
+
+    @QueryHandler
+    public Product handle(FindProductByIdQuery query) {
+        log.info("Handling FindProductByIdQuery query: {}", query);
+        return this.repository.findById(query.getProductId()).orElse(null);
     }
 }

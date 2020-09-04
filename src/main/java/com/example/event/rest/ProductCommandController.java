@@ -35,8 +35,8 @@ public class ProductCommandController {
 
     @PutMapping(value = "/{ProductId}")
     public CompletableFuture<Product> updateProduct(@PathVariable(value = "ProductId") String productId,
-                                                            @RequestBody ProductCreateAndUpdateDTO dto
-    ) {
+                                                    @RequestBody ProductCreateAndUpdateDTO dto) {
+
         return this.productCommandService.updateProduct(productId, dto);
     }
 }
