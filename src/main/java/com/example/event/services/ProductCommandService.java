@@ -30,7 +30,8 @@ public class ProductCommandService {
         return this.commandGateway.send(new CreateProductCommand(
                 String.valueOf(productId),
                 creationDTO.getSalePrice(),
-                creationDTO.getConsumerPrice()
+                creationDTO.getConsumerPrice(),
+                creationDTO.getProductImages()
         ));
     }
 

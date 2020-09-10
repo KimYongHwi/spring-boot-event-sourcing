@@ -1,6 +1,9 @@
 package com.example.event.commands;
 
 import java.math.BigDecimal;
+import java.util.List;
+
+import com.example.event.domain.entities.ProductImage;
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
@@ -17,4 +20,5 @@ public class CreateProductCommand {
     private String productId;
     private BigDecimal salePrice;
     private BigDecimal consumerPrice;
+    private List<ProductImage> productImages;
 }

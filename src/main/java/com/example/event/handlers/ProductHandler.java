@@ -2,6 +2,8 @@ package com.example.event.handlers;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.example.event.domain.entities.Product;
 import com.example.event.domain.repository.ProductRepository;
 import com.example.event.events.ProductCreatedEvent;
@@ -24,12 +26,16 @@ public class ProductHandler {
     private final ProductRepository repository;
     
     @EventHandler
+    @Transactional
     public void on(ProductCreatedEvent event) {
-        Product product = new Product(
-            Long.parseLong(event.getProductId()),
-            event.getSalePrice(),
-            event.getConsumerPrice()
-        );
+        Product product = new Product();
+
+        product.setProductId(Long.parseLong(event.getProductId()));
+        product.setSalePrice(event.getSalePrice());
+        product.setConsumerPrice(event.getConsumerPrice());
+        event.getProductImages().stream().forEach(productImage -> {
+            product.addProductImage(productImage);
+        });
 
         this.repository.save(product);
     }

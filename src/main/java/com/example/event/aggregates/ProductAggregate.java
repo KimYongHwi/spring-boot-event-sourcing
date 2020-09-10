@@ -1,9 +1,11 @@
 package com.example.event.aggregates;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.example.event.commands.CreateProductCommand;
 import com.example.event.commands.UpdateProductCommand;
+import com.example.event.domain.entities.ProductImage;
 import com.example.event.events.ProductCreatedEvent;
 import com.example.event.events.ProductUpdatedEvent;
 
@@ -27,6 +29,7 @@ public class ProductAggregate {
     private String id;
     private BigDecimal salePrice;
     private BigDecimal consumerPrice;
+    private List<ProductImage> productImages;
 
     @CommandHandler
     public ProductAggregate(CreateProductCommand command) {
@@ -34,7 +37,8 @@ public class ProductAggregate {
             new ProductCreatedEvent(
                 command.getProductId(),
                 command.getSalePrice(),
-                command.getConsumerPrice()
+                command.getConsumerPrice(),
+                command.getProductImages()
             )
         );
     }
@@ -44,15 +48,13 @@ public class ProductAggregate {
         this.id = event.getProductId();
         this.salePrice = event.getSalePrice();
         this.consumerPrice = event.getConsumerPrice();
+        this.productImages = event.getProductImages();
     }
 
     @CommandHandler
     public void handle(UpdateProductCommand command) {
         AggregateLifecycle.apply(
-            new ProductUpdatedEvent(
-                command.getProductId(),
-                command.getSalePrice(),
-                command.getConsumerPrice()));
+                new ProductUpdatedEvent(command.getProductId(), command.getSalePrice(), command.getConsumerPrice()));
     }
 
     @EventSourcingHandler
